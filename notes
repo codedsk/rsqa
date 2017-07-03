@@ -1,0 +1,60 @@
+===========================================
+install
+
+selenium webdriver python bindings:
+sudo pip install selenium
+
+
+geckodriver binary:
+# download precompiled binary from github:
+# https://github.com/mozilla/geckodriver/releases
+curl -L https://github.com/mozilla/geckodriver/releases/download/v0.17.0/geckodriver-v0.17.0-linux64.tar.gz
+tar xvzf geckodriver-v0.17.0-linux64.tar.gz
+rm geckodriver-v0.17.0-linux64.tar.gz
+mkdir bin
+mv geckodriver bin/.
+# add directory to path
+export PATH=`pwd`/bin:${PATH}
+
+
+# firefox web browser:
+# info page: https://www.mozilla.org/en-US/firefox/new/
+curl -L https://download.mozilla.org/?product=firefox-54.0.1-SSL&os=linux64&lang=en-US > firefox-54.0.1.tar.bz2
+tar xvjf firefox-54.0.1.tar.bz2
+mv firefox 54.0.1
+
+
+
+===========================================
+usage:
+
+
+from selenium import webdriver
+from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
+
+# set the path to our firefox binary
+# make sure your binary matches the geckodriver
+ff_path = '/path/to/firefox'
+
+# launch the browser
+binary = FirefoxBinary(ff_path)
+driver = webdriver.Firefox(firefox_binary=binary)
+
+# navigate to a page
+driver.get('https://google.com')
+
+
+
+===========================================
+running the testcases:
+
+1. edit zconfig.py to change the path to firefox
+2. issue the following command from the prompt:
+   python -m pytest
+
+
+
+===========================================
+todo:
+
+1. fix locators for links.

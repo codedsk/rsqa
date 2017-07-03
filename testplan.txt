@@ -1,0 +1,110 @@
+Manual Test Plan for the Shiny Server Pro download evaluation page
+URL: https://www.rstudio.com/products/shiny-server-pro/evaluation
+
+
+Introduction:
+
+The Shiny Server Pro download evaluation page is the second in a series of
+three web pages users encounter when exploring choosing "Shiny Server Pro" from
+the Product menu on the http://www.rstudio.com website. The purpose of the web
+page is to describe the benefits of the using Shiny Server Pro as well as
+promote the free 45 day evaluation period users have to try the software out.
+
+The evaluation web page is encapsulated by a header and footer which also
+appear on nearly every web page of the http://www.rstudio.com website and will
+be considered out of the scope of this test plan. The purpose of this test plan
+is to identify checkable portions of the web page's feature content and verify
+that there are no visual or functional abnormalities at the user interface
+level.
+
+
+Test Environment:
+To perform these tests, the user will need the following:
+1. Web browser (recent version of at least one: Firefox, IE 10+, Safari,
+Chrome)
+2. Access to a qa version of the http://www.rstudio.com website to avoid
+populating live website databases with junk.
+
+Test Preconditions:
+Assumptions about the system
+
+1. Web browser is open and navigated to the Shiny Server Pro download
+evaluation web page:
+https://www.rstudio.com/products/shiny-server-pro/evaluation
+2. Large browsers have widths above 800 pixels
+3. Small browsers have widths below 800 pixels
+
+Feature Content:
+There are three main sections of the feature content including:
+1. Text Explanation <div> located in the top left of the web page, includes
+text and an image.
+2. Signup/Download Form located on the top right of the web page.
+3. Customer Logos across the bottom of the web page.
+
+
+Test Actions:
+
+Visual Inspection:
+
+1. Element Overlaps - Check that the elements within the feature content
+sections don't overlap with each other, both when the web browser is large
+(1024X768px) and small (320X480px)
+
+2. Text Explanation / Signup Form Width - Check that these two feature content
+sections are horizontally aligned, equally sharing the width of the web browser
+when the browser is large. When the browser is small, the web page should
+reflow in a reactive manner, with the Text Explanation section appearing at the
+top, followed by the Signup Form, and the Customer Logos last.
+
+3. Text Explanation Arrow - Check that the arrow in the text explanation points
+toward the signup form when the browser is both large and small.
+
+4. Customer Logos Sizing - Check that the customer logos image resizes
+appropriately and continues to be placed at the bottom of the feature content
+as the browser width changes.
+
+
+Automated Checks
+
+5. Signup Form Absent Field Verification - For each required field, check that
+leaving the field empty and filling in all other required fields and pressing
+the Download button warns the user about the empty required field. This can
+also be done, without using the Download button, by using the mouse to enter,
+exit, then enter again the text input field, which seems to trigger the js
+field verification.
+
+6. Signup Form Invalid Email Address - Check that entering invalid email
+addresses trigger field verification warnings for the user. Invalid email
+addresses include empty addresses, strings without the at-sign ("@"), strings
+with multiple at-signs, strings with at-signs as either the first or last
+character and others
+
+7. Commercial License 404 - Check that the Commercial license PDF link in the
+Text Explanation section points to a valid file. md5sum check.
+
+8. SSP EULA 404 - Check that the EULA link in the Signup Form takes user to
+http://www.rstudio.com/about/eula/
+
+9. Privacy Policy - Check that the privacy policy link in the Signup Form takes
+users to https://www.rstudio.com/about/privacy-policy/
+
+10. Valid Input - Check that after filling in the Signup Form with valid
+inputs, and pressing the Download Button, the text the the Download Button
+changes to "Please Wait...", and the user is taken to the web page:
+https://www.rstudio.com/products/shiny/download-commercial. 200 page response?
+Ensure the user data was captured in the database as it was entered into the
+web form.
+
+11. HTTP-> HTTPS - Check that if a user goes to the http version of the
+evaluation web page
+(http://www.rstudio.com/products/shiny-server-pro/evaluation/), they are
+automatically transferred to the https version of the web page.
+
+
+Expected Deliverables:
+1. In case of an error, take screenshot or video of the test failure.
+2. After running, test successes, failures, and image/video attributes should
+be counted and entered into a database for data collection and later analysis.
+
+Post-test Cleanup:
+1. Refresh the database
